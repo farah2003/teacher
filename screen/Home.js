@@ -18,6 +18,14 @@ age:""
            this.setState({name:text})
        }}
        />
+
+<TextInput
+       	style={styles.textInput}
+       placeholder="enter ur name"
+       onChange={text=>{
+           this.setState({name:text})
+       }}
+       />
        
        <TextInput
        	style={styles.textInput}
