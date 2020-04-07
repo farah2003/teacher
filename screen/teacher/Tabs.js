@@ -77,7 +77,7 @@ state={
                  onPress={()=>this.Masanger()} >
            <Image
                style={styles.imageMasage}
-               source={require("../image.jpg")}
+               source={require("../image.png")}
             > 
        
              </Image>  
