@@ -4,7 +4,7 @@ import {createMaterialTopTabNavigator,createBottomTabNavigator}from 'react-navig
 import {createStackNavigator}from 'react-navigation-stack'
 //import Fill  from './screen/Home'
 import  AnotherChat from './screen/Chat/anotherChat'
-
+import NorthTabs from './screen/teacher/NorthGaza'
 import Chat  from './screen/Chat/chat'
 import sub from "./screen/teacher/sub"; 
 import grade from "./screen/teacher/grade";   
@@ -15,6 +15,8 @@ import StudentLog   from "./screen/mainStudent/studentlog";
 import  StudentSign from "./screen/mainStudent/studentsign";
 import Main from "./screen/Main";
 import Fill from "./screen/Home";
+import profileTeacher from "./screen/profile/profileTeacher"
+import profileStudent from './screen/profile/profileStudent'
 import * as firebase from "firebase";
  // Your web app's Firebase configuration
  var firebaseConfig = {
@@ -33,14 +35,22 @@ firebase.initializeApp(firebaseConfig);
 const Masangerpage = createStackNavigator({
     Gaza:Tabs,
     masanger: Chat ,
-
+   
     
 
 });
+const Masanger = createStackNavigator({
+  
+   
+    NorthTabs:NorthTabs,
+    
+    masanger: Chat ,
+   
+});
 const AppNavigatorTop= createMaterialTopTabNavigator(  
     {  
-        Gaza:Chat,  
-        NorthGaza:Tabs,  
+        GAZA:Masangerpage ,  
+        NorthGaza:Masanger,  
       Rafah:Tabs,   
       NoGaza:Tabs,  
       NorGaza:Tabs,  
@@ -59,7 +69,7 @@ subject:{screen:FindTeacherNav}
 });
 const HometabStudent = createBottomTabNavigator({
     StudentHome:StudentDetails ,
-    Studentprofile:Fill,
+    Studentprofile:profileStudent,
     Studentmassnger:Fill
 });
 
@@ -80,7 +90,7 @@ const MainTeacher = createStackNavigator({
 });
 const HometabTeacher = createBottomTabNavigator({
     TeacherHome:Fill,
-    Teacherprofile:Fill,
+    Teacherprofile:profileTeacher,
     Teachermassnger:Fill
 });
 
@@ -108,7 +118,7 @@ const SwitchScreen = createSwitchNavigator({
        /// } ) 
 
 
-const App = createAppContainer(AppNavigatorTop);
+const App = createAppContainer( SwitchScreen);
 export default App;
 
 

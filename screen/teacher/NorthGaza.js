@@ -5,7 +5,7 @@ import * as firebase from "firebase";
 import 'firebase/firestore';
 
 ;
-export default class Tabs extends Component {
+export default class NorthTabs extends Component {
   navigationOptions= {
    title:"find"
   }
@@ -14,11 +14,11 @@ state={
   appname:""
 }
 
-componentDidMount(){
+   componentWillMount(){
       const db = firebase.firestore();
  
       let newList =[]
-      let appname="ffff"
+      let appname="farah"
   
       db.collection("teacher").where('value','==','Biology').where('grade','==','11').get().then((userSnapshot) => {
    
@@ -40,10 +40,12 @@ componentDidMount(){
       
     })
     }
-
    Masanger=()=>{
- const{appname}=this.state
-      this.props.navigation.navigate("masanger"), { appname: "gh" }
+ 
+      this.props.navigation.navigate("masanger"
+     ,  {
+        appname: this.state.appname
+      })
       
     }
     render(){
@@ -77,7 +79,7 @@ componentDidMount(){
                  onPress={()=>this.Masanger()} >
            <Image
                style={styles.imageMasage}
-               source={require("../masage.jpg")}
+               source={require("../image.jpg")}
             > 
        
              </Image>  
@@ -249,11 +251,11 @@ button2:{
     },
 
     imageMasage:{
-      marginLeft:300,
-         height: 35,
-     width: 35,
-         marginTop:0,
-         marginBottom:6,
+      marginLeft:240,
+         height: 50,
+     width: 50,
+         marginTop: 5,
+         marginBottom:3,
  
          margin: 30,
          borderRadius:50

@@ -4,46 +4,60 @@ import {View ,TouchableOpacity} from 'react-native';
 import { Text } from 'native-base';
 import * as firebase from 'firebase'
 export default class Chat extends Component{
-  static navigationOptions = {
-    title: 'farah',
-    headerTitleStyle :{textAlign: 'center',alignSelf:'center'},
-    headerStyle:{
-        backgroundColor:'white',
-    },
-};
+ // static navigationOptions = {
+ //   title: 'farah',
+  //  headerTitleStyle :{textAlign: 'center',alignSelf:'center'},
+  //  headerStyle:{
+    //    backgroundColor:'white',
+  //  },
+//};
   state = {
     Textmessages: [],
+    Userid:""
   };
 
-componentWillMount(){
-  this.props.navigation.getParam(" appname").then( appname => {
-    console.log("appname", appname)
-  });
-  }
+//componentDidMount(){
+
+  //const {appname } = route.params;
+
+ // appname= this.props.navigation.getParam('appname')
+  //console.log("appname", appname)
+
+ 
+  
+  
+//  }
 
   addMasagees=()=>{
-    
-    var user = firebase.auth().currentUser;
-    const senderId = "bbbdbbb"
-    const receiverId = "ffffffffffdf"
-    const id = senderId + "_" + receiverId;
-  
-  
     const db = firebase.firestore();
-      
-    db.collection("xdg").doc(id).set({
-        
-      messages:this.state.Textmessages
+ 
+    db.collection("name").where('name','==','Ismail').get().then((userSnapshot) => {
+   
+          
+      userSnapshot.docs.map(doc =>{
+   
+      let uid= doc.data().userId
   
+      this.setState({
+        Userid:uid
+      })
   
+    })}).then(()=>{
+      var user = firebase.auth().currentUser;
+      const senderId =user.uid
   
-  
-  
-    }).then(function (docRef) {
+
+      const receiverId =(this.state.Userid)
+   
+      const id = senderId + "_" + receiverId;
+      db.collection("Chat").doc(id).set({
+          
+        messages:this.state.Textmessages
+    })}).then(function (docRef) {
            // console.log("Document written with ID: ", docRef.id);
         })
         .catch(function (error) {
-            console.error("Error adding document: ", error);
+            //console.error("Error adding document: ", error);
         })
     
 
@@ -53,7 +67,34 @@ componentWillMount(){
 
   componentWillMount() {
 
+    const db = firebase.firestore();
+ 
+    db.collection("name").where('name','==','Ismail').get().then((userSnapshot) => {
+   
+          
+      userSnapshot.docs.map(doc =>{
+   
+      let uid= doc.data().userId
+   
+     this.setState({
+      Userid:uid
+    })
+   
+    
+    })})
+  /*  .then(()=>{
+      var user = firebase.auth().currentUser;
+      const senderId =user.uid
+  
 
+      const receiverId =(this.state.Userid)
+   
+      const id = senderId + "_" + receiverId;
+    
+    console.log("iiiiiiiiiiiiid",id)
+    
+    })*/
+  
 
     this.setState({
       Textmessages: [
@@ -72,8 +113,10 @@ componentWillMount(){
 
    
 }))
-  
   this.addMasagees()
+
+  
+
 
  
 

@@ -10,7 +10,7 @@ export default class AnotherChat extends Component {
         text:""
       };
  
-      componentWillMount(){
+      componentDidMount(){
         const db = firebase.firestore();
    
        
