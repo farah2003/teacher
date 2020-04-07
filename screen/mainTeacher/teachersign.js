@@ -21,16 +21,31 @@ log(){
   sign=()=>{
     var email=this.state.email
     var password=this.state.password
+    var name= this .state.name
     firebase.auth().createUserWithEmailAndPassword(email,
       password).catch(function (error) {
         var errorM = error.code;
       
         console.log('eee',errorM)
            // ...
+  
        }).then(()=>{
+         
          let user=firebase.auth().currentUser;
-         console.log("user",user)
-         this.props.navigation.navigate("TeacherHome");
+    console.log(user.uid)
+    const db = firebase.firestore()
+    db.collection("name").doc(user.uid).set({
+   
+        name:name,
+        userId:user.uid,
+        email:email,
+        password:password
+    }).then(()=>{
+      this.props.navigation.navigate("TeacherHome");
+    })
+
+         
+
     
        })}
 

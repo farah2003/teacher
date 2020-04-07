@@ -3,6 +3,9 @@ import {createAppContainer,createSwitchNavigator}from 'react-navigation'
 import {createMaterialTopTabNavigator,createBottomTabNavigator}from 'react-navigation-tabs'
 import {createStackNavigator}from 'react-navigation-stack'
 //import Fill  from './screen/Home'
+import  AnotherChat from './screen/Chat/anotherChat'
+
+import Chat  from './screen/Chat/chat'
 import sub from "./screen/teacher/sub"; 
 import grade from "./screen/teacher/grade";   
 import Tabs from "./screen/teacher/Tabs";
@@ -26,13 +29,21 @@ import * as firebase from "firebase";
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+const Masangerpage = createStackNavigator({
+    Gaza:Tabs,
+    masanger: Chat ,
+
+    
+
+});
 const AppNavigatorTop= createMaterialTopTabNavigator(  
     {  
-        Gaza:Tabs,  
-        NorthGaza:Tabs, 
-      Rafah:Tabs, 
-      NoGaza:Tabs, 
-      NorGaza:Tabs, 
+        Gaza:Chat,  
+        NorthGaza:Tabs,  
+      Rafah:Tabs,   
+      NoGaza:Tabs,  
+      NorGaza:Tabs,  
   
   } )
 const FindTeacherNav = createSwitchNavigator({
@@ -97,7 +108,7 @@ const SwitchScreen = createSwitchNavigator({
        /// } ) 
 
 
-const App = createAppContainer(  SwitchScreen);
+const App = createAppContainer(AppNavigatorTop);
 export default App;
 
 

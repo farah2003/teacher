@@ -15,6 +15,7 @@ export default class Fill extends Component {
     headerTitleStyle: { color: 'white' },
   } 
 state={
+  appName:'',
 name:'',
 check:false,
 age:"",
@@ -25,6 +26,23 @@ address:'',
 classMath:false,
 sub:"",
 value:""
+}
+componentWillMount(){
+  let user=firebase.auth().currentUser;
+  firebase.firestore().doc(`name/${user.uid}`).get().then((doc)=>{
+           
+      
+            
+  
+
+   let appname= doc.data().name
+   console.log("appname",appname)
+  
+   this.setState({
+    appName:appname
+   })
+
+});
 }
 checkboxph=()=>{
   
@@ -45,12 +63,12 @@ select=(itemValue, itemIndex)=>{
   }
 addData=()=>{
 
- 
     const db = firebase.firestore().collection("teacher");
-    
+   
+
     db.add({
         
-
+      appName:this.state.appName,
     Name: this.state.name,
    
    age:this.state.age,

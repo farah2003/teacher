@@ -12,6 +12,7 @@ export default class StudentSign extends Component {
    sign=()=>{
       var email=this.state.email
       var password=this.state.password
+      var name=this.state.name
       firebase.auth().createUserWithEmailAndPassword(email,
         password).catch(function (error) {
           var errorM = error.code;
@@ -19,8 +20,21 @@ export default class StudentSign extends Component {
           console.log('eee',errorM)
              // ...
          }).then(()=>{
-           let user=firebase.auth().currentUser;
-           console.log("user",user)
+          var email=this.state.email
+      var password=this.state.password
+      var name=this.state.name
+         let user=firebase.auth().currentUser;
+    
+    const db = firebase.firestore()
+         db.collection("namestudent").doc(user.uid).set({
+            name:name,
+           userId:user.uid,
+            email:email,
+            password:password
+    }) 
+  }).then(()=>{
+      
+          
           this.props.navigation.navigate("StudentHome");
          })
 

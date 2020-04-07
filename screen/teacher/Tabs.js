@@ -10,8 +10,10 @@ export default class Tabs extends Component {
    title:"find"
   }
 state={
-  list:[]
+  list:[],
+  appname:""
 }
+
    componentWillMount(){
       const db = firebase.firestore();
  
@@ -23,16 +25,26 @@ state={
         userSnapshot.docs.map(doc =>{
      
         let x= doc.data()  
+        let appname= doc.data().appname
          
         newList.push(x)  
           
            } );           
         this.setState({
-          list:newList
+          list:newList,
+          appname:appname
+        
         })
         console.log( 'finallist',this.state.list)     
       
     })
+    }
+    Masanger=()=>{
+ 
+      this.props.navigation.navigate("masanger", {
+        appname: this.state.appname
+      })
+      
     }
     render(){
       const{list}=this.state
@@ -52,14 +64,24 @@ state={
        
              </Image>  
              </TouchableOpacity>    
-             <CardTitle   subtitle={item.Name}/>
-
+       
            
-             
+
+             <CardTitle   subtitle={item.appname}/>
+             <CardContent text={item.Name} />
              <CardContent text={item.grade} />
              <CardContent text={item.value}/>
              <CardContent text={item.prise} />
           
+             <TouchableOpacity
+                 onPress={()=>this.Masanger()} >
+           <Image
+               style={styles.imageMasage}
+               source={require("../image.jpg")}
+            > 
+       
+             </Image>  
+             </TouchableOpacity>   
              
              {/* <CardAction 
                 separator={true} 
@@ -224,5 +246,16 @@ button2:{
 
         margin: 30,
         borderRadius:50
-    }
+    },
+
+    imageMasage:{
+      marginLeft:240,
+         height: 50,
+     width: 50,
+         marginTop: 5,
+         marginBottom:3,
+ 
+         margin: 30,
+         borderRadius:50
+     }
   })

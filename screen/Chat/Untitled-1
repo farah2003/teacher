@@ -1,0 +1,88 @@
+import React, { Component } from 'react';
+import {View ,StyleSheet,TextInput,TouchableOpacity} from 'react-native';
+import * as firebase from "firebase";
+import 'firebase/firestore';
+import { Text } from 'native-base';
+export default class Chat extends Component {
+
+
+    state={
+        name:'',
+        check:false,
+        age:"",
+        phone:'',
+        price:'',
+        grade:'',
+        address:'',
+        classMath:false,
+        sub:"",
+        value:""
+        }
+    addData=()=>{
+
+ 
+        const db = firebase.firestore().collection("M").doc("aseel").collection("farah")
+        
+        db.add({
+            
+    
+        Name: this.state.name,
+       
+    
+      
+    
+    
+           //Phone:this.state.phone,
+           // Age:this.state.age,
+           // price:this.state.price,
+           // grade:this.state.grade,
+           // address:this.state.address
+    
+    
+        }).then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            })
+        
+    
+       
+      
+      }
+    
+  render() {
+    return (
+      <View>
+         <TextInput
+       	style={styles.textInput}
+       placeholder="enter ur name"
+       onChangeText={t=>{
+           this.setState({name:t});
+           
+       }}
+       value={this.state.name}
+       ></TextInput>
+        <TouchableOpacity
+         style={styles.button}
+         onPress={()=>this.addData()}
+       >
+         <Text > Touch Here </Text>
+       </TouchableOpacity>
+
+       <TextInput
+       	style={styles.textInput}
+       placeholder="enter ur name"
+       onChangeText={t=>{
+           this.setState({name:t});
+           
+       }}
+       value={this.state.name}
+       ></TextInput>
+      </View>
+    );
+  }
+}
+const styles = StyleSheet.create({
+    
+});
