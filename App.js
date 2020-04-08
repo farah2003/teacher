@@ -4,7 +4,7 @@ import {createMaterialTopTabNavigator,createBottomTabNavigator}from 'react-navig
 import {createStackNavigator}from 'react-navigation-stack'
 //import Fill  from './screen/Home'
 import  AnotherChat from './screen/Chat/anotherChat'
-import NorthTabs from './screen/teacher/NorthGaza'
+import NorthGazaTabs from './screen/teacher/NorthGaza'
 import Chat  from './screen/Chat/chat'
 import sub from "./screen/teacher/sub"; 
 import grade from "./screen/teacher/grade";   
@@ -33,39 +33,98 @@ import * as firebase from "firebase";
 firebase.initializeApp(firebaseConfig);
 
 const Masangerpage = createStackNavigator({
-    Gaza:Tabs,
-    masanger: Chat ,
+    Gaza:{screen :Tabs,
+        navigationOptions: {
+            //labelStyle: { fontSize: 12 },
+             tabStyle: { width: 100 },
+             header: null,
+          //   style: { backgroundColor: 'powderblue' },
+           },},
+    masanger: {screen:Chat }
+     //   navigationOptions:{
+            // this should do the work, but it doesn't
+         //
+            //tabBarVisible: false
+        //  }}
+
    
     
 
 });
+
+Masangerpage.navigationOptions = ({ navigation }) => {
+    let tabBarVisible;
+   if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+     
+        if (route.routeName === "masanger") {
+          tabBarVisible = false;
+        } else {
+          tabBarVisible = true;
+        }
+     });
+    }
+  
+    return {
+      tabBarVisible
+    };
+  };
+/*Masangerpage.navigationOptions = ({ navigation }) => {
+    navigationOptions = {
+    title: navigation.getParam('Title', ' Gaza'),
+    };
+    if (navigation.state.routeName === "masanger") {
+        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyy")
+    navigationOptions.tabBarVisible = false;
+    }
+    return navigationOptions;
+    };*/
 const Masanger = createStackNavigator({
   
    
-    NorthTabs:NorthTabs,
+    NorthTabs:NorthGazaTabs,
     
     masanger: Chat ,
    
 });
 const AppNavigatorTop= createMaterialTopTabNavigator(  
     {  
-        GAZA:Masangerpage ,  
+        GAZA:{screen: Masangerpage ,
+            navigationOptions: {
+               // labelStyle:{backgroundColor:"green"},
+                style:{marginTop: 10},
+               
+               //tabStyle: { width: 100,marginTop: 10,backgroundColor:"black" },
+                header: null
+                ,
+             //   style: { backgroundColor: 'powderblue' },
+              },},
+       
         NorthGaza:Masanger,  
       Rafah:Tabs,   
       NoGaza:Tabs,  
       NorGaza:Tabs,  
   
-  } )
-const FindTeacherNav = createSwitchNavigator({
-SelectSub:sub ,
-	TeacherCard: AppNavigatorTop
-});
+  } ,
   
+  )
+const FindTeacherNav = createStackNavigator({
+SelectSub:sub ,
+    TeacherCard: {screen:AppNavigatorTop,
+        navigationOptions: {
+            header: null,
+          },}
+       
+});
+
 
 
 const StudentDetails = createStackNavigator({
 grade: grade,
-subject:{screen:FindTeacherNav}
+subject:{screen:FindTeacherNav,
+    navigationOptions: {
+        header: null,
+      }, }
 });
 const HometabStudent = createBottomTabNavigator({
     StudentHome:StudentDetails ,
@@ -118,7 +177,7 @@ const SwitchScreen = createSwitchNavigator({
        /// } ) 
 
 
-const App = createAppContainer( SwitchScreen);
+const App = createAppContainer( StudentDetails);
 export default App;
 
 

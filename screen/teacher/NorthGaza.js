@@ -5,7 +5,7 @@ import * as firebase from "firebase";
 import 'firebase/firestore';
 
 ;
-export default class NorthTabs extends Component {
+export default class NorthGazaTabs extends Component {
   navigationOptions= {
    title:"find"
   }

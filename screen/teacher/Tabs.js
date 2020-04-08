@@ -79,7 +79,7 @@ componentDidMount(){
                style={styles.imageMasage}
                source={require("../masage.jpg")}
             > 
-       
+     
              </Image>  
              </TouchableOpacity>   
            

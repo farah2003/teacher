@@ -4,6 +4,8 @@ import {View ,TouchableOpacity} from 'react-native';
 import { Text } from 'native-base';
 import * as firebase from 'firebase'
 export default class Chat extends Component{
+
+
  // static navigationOptions = {
  //   title: 'farah',
   //  headerTitleStyle :{textAlign: 'center',alignSelf:'center'},
@@ -66,7 +68,8 @@ export default class Chat extends Component{
   }
 
   componentWillMount() {
-
+  //  let farah=this.props.navigation.state.getParam('name',"farah")
+//console.log("name",farah)
     const db = firebase.firestore();
  
     db.collection("name").where('name','==','Ismail').get().then((userSnapshot) => {
