@@ -26,8 +26,8 @@ export default class AnotherChat extends Component {
   
          
                let data= doc.data().messages
-               data.map((data)=>{
-                 newList.append(data)
+               data.map((item)=>{
+                 newList.append(item)
 
                }
                )

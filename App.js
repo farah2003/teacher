@@ -3,6 +3,7 @@ import {createAppContainer,createSwitchNavigator}from 'react-navigation'
 import {createMaterialTopTabNavigator,createBottomTabNavigator}from 'react-navigation-tabs'
 import {createStackNavigator}from 'react-navigation-stack'
 //import Fill  from './screen/Home'
+import MainChat from './screen/Chat/mainChat'
 import  AnotherChat from './screen/Chat/anotherChat'
 import NorthGazaTabs from './screen/teacher/NorthGaza'
 import Chat  from './screen/Chat/chat'
@@ -40,7 +41,7 @@ const Masangerpage = createStackNavigator({
              header: null,
           //   style: { backgroundColor: 'powderblue' },
            },},
-    masanger: {screen:Chat }
+    masanger: {screen:MainChat }
      //   navigationOptions:{
             // this should do the work, but it doesn't
          //

@@ -15,7 +15,8 @@ export default class Chat extends Component{
 //};
   state = {
     Textmessages: [],
-    Userid:""
+    receiverId:"",
+    senderId:""
   };
 
 //componentDidMount(){
@@ -30,32 +31,23 @@ export default class Chat extends Component{
   
 //  }
 
-  addMasagees=()=>{
-    const db = firebase.firestore();
+  addMasagees=(m)=>{
+  const db = firebase.firestore();
  
-    db.collection("name").where('name','==','Ismail').get().then((userSnapshot) => {
-   
-          
-      userSnapshot.docs.map(doc =>{
-   
-      let uid= doc.data().userId
   
-      this.setState({
-        Userid:uid
-      })
-  
-    })}).then(()=>{
-      var user = firebase.auth().currentUser;
-      const senderId =user.uid
   
 
-      const receiverId =(this.state.Userid)
+
+    //  const receiverId =(this.state.receiverId)
+    //  const senderId=(this.state.senderId)
    
-      const id = senderId + "_" + receiverId;
-      db.collection("Chat").doc(id).set({
-          
-        messages:this.state.Textmessages
-    })}).then(function (docRef) {
+   //   const id = senderId + "_" + receiverId;
+      
+      db.collection("Chat").doc("OZ3cXd2JQTefVFPqVKyaVaLH2xp1_Gg53lJsneWYr6AFfbr2pxHa9w4G2").set({
+          messages:m
+     //   text:this.state.Textmessages.text,
+        //user:this.state.Textmessage.user
+    }).then(function (docRef) {
            // console.log("Document written with ID: ", docRef.id);
         })
         .catch(function (error) {
@@ -66,51 +58,76 @@ export default class Chat extends Component{
   
   
   }
-
-  componentWillMount() {
   //  let farah=this.props.navigation.state.getParam('name',"farah")
 //console.log("name",farah)
+
+//db.collection("name").where('name','==','raghed').get().then((userSnapshot) => {
+
+      
+//  userSnapshot.docs.map(doc =>{
+//
+//  let uid= doc.data().userId
+
+ /// this.setState({
+  //  Userid:uid,
+   // Textmessages:m
+    
+//  })
+
+//})})
+//.then(()=>
+//{
+  //var user = firebase.auth().currentUser;
+  //const senderId =user.uid
+  //  this.setState({
+   // /senderId:senderId
+    ///}
+  
+    //)
+
+    //const receiverId =(this.state.receiverId)
+   
+    //const id = senderId + "_" + receiverId;
+
+    componentWillMount(){
+      console.log("sdxfghjkl;")
     const db = firebase.firestore();
  
-    db.collection("name").where('name','==','Ismail').get().then((userSnapshot) => {
+    
+    firebase.firestore().collection("Chat").doc("OZ3cXd2JQTefVFPqVKyaVaLH2xp1_Gg53lJsneWYr6AFfbr2pxHa9w4G2").get().then((doc)=>{
+           
+      
+            
+      let newList =[]
+
+
+     let data= doc.data()
    
-          
-      userSnapshot.docs.map(doc =>{
-   
-      let uid= doc.data().userId
-   
+   newList.push(data)
+ 
      this.setState({
-      Userid:uid
-    })
-   
-    
-    })})
-  /*  .then(()=>{
-      var user = firebase.auth().currentUser;
-      const senderId =user.uid
-  
+     List:newList
+   })
 
-      const receiverId =(this.state.Userid)
-   
-      const id = senderId + "_" + receiverId;
-    
-    console.log("iiiiiiiiiiiiid",id)
-    
-    })*/
-  
+   console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnn",newList)
+   newList.map((item)=>{
+   this.setState((previousState) => ({
+    Textmessages: GiftedChat.append(previousState.Textmessages, item),
 
-    this.setState({
-      Textmessages: [
-        {
-          
-          text: 'Hello developer',
-          createdAt: new Date(),
-         
-        }
-      ]
-    });
-  }
-  onSend=(m ) =>{
+   
+}))
+//  newList.append(item)
+
+}
+)
+
+
+});
+
+
+}
+//)}
+ /* onSend=(m ) =>{
    this.setState((previousState) => ({
     Textmessages: GiftedChat.append(previousState.Textmessages, m),
 
@@ -124,15 +141,15 @@ export default class Chat extends Component{
  
 
  }
-
+*/
   render() {
     return (
  
       <GiftedChat
-      onSend={(m) => this.onSend(m)}
+      onSend={(m) => this. addMasagees(m)}
         messages={this.state.Textmessages}
         user={{
-          _id: 1,
+          _id: 2,
         }}
         
       />
