@@ -85,7 +85,7 @@ const Masanger = createStackNavigator({
    
     NorthTabs:NorthGazaTabs,
     
-    masanger: Chat ,
+    masanger:MainChat ,
    
 });
 const AppNavigatorTop= createMaterialTopTabNavigator(  
@@ -178,7 +178,7 @@ const SwitchScreen = createSwitchNavigator({
        /// } ) 
 
 
-const App = createAppContainer( StudentDetails);
+const App = createAppContainer( SwitchScreen);
 export default App;
 
 
