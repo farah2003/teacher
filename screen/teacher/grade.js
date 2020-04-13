@@ -20,8 +20,7 @@ export default class garde extends Component {
         <Card style={{height:180}}>
                           
                                                                   
-             <ImageBackground source={{uri:'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}} style={{width: '100%', height:'100%'}}>
-                  <Text style={{marginTop:45,marginRight:150}}>Inside</Text>
+             <ImageBackground source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQttt11jU4sg0-irFt7K2CCSpFZr2Gxh7y3wJfPQbFxxSYgLY1xvoVJP-X_&s'}} style={{width: '100%', height:'100%'}}>
              </ImageBackground>               
        
   
@@ -31,8 +30,7 @@ export default class garde extends Component {
         <Card style={{height:180}}>
                           
                                                                   
-             <ImageBackground source={{uri:'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}} style={{width: '100%', height: '100%'}}>
-                  <Text style={{marginTop:45,marginRight:150}}>Inside</Text>
+             <ImageBackground source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi6Cte7B_EqyJJQ7sULF9TnnqpF9KI3_5bVtpNNdAh4_oLXywkswLcQM9t&s'}} style={{width: '100%', height: '100%'}}>
              </ImageBackground>               
 
   
@@ -42,8 +40,7 @@ export default class garde extends Component {
         <Card style={{height:185}}>
                           
                                                                   
-             <ImageBackground source={{uri:'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}} style={{width: '100%', height: '100%'}}>
-                  <Text style={{marginTop:45,marginRight:150}}>Inside</Text>
+             <ImageBackground source={{uri:'http://clipart-library.com/data_images/241732.png'}} style={{width: '100%', height: '100%'}}>
              </ImageBackground>               
       
   

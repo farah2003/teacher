@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text,TouchableOpacity,StyleSheet,Image } from 'react-native';
+import { View, Text,TouchableOpacity,StyleSheet,Image, ImageBackground } from 'react-native';
+import {Icon} from 'react-native-elements';
 import * as firebase from 'firebase'
 class profileTeacher extends Component {
   state = {
@@ -31,7 +32,7 @@ class profileTeacher extends Component {
      return (
        <View>
         
-        <Text style={styles.profile}> Touch Here </Text>
+        <Text style={styles.profile}> Your Profile </Text>
  
       
             <Image
@@ -42,6 +43,37 @@ class profileTeacher extends Component {
               </Image>  
              
               <Text style={styles.name}> {this.state.name} </Text>
+              <TouchableOpacity
+         style={styles.button}
+         //onPress={}
+       >
+ {/* <ImageBackground source={{uid:'https://image.flaticon.com/icons/png/512/124/124642.png'}} style={{width: '100%', height: '100%'}}></ImageBackground>        */}
+<Text style={styles.title}> Al Karmel High school  </Text>
+       </TouchableOpacity>
+       <TouchableOpacity
+         style={styles.button}
+         //onPress={}
+       >
+         <Icon
+  reverse
+  name='ios-american-football'
+  type='ionicon'
+  color='#517fa4'
+/>
+         <Text style={styles.title}> Edit Profile </Text>
+       </TouchableOpacity>
+       <TouchableOpacity
+         style={styles.button}
+         //onPress={}
+       >
+         <Text style={styles.title}> About the app </Text>
+       </TouchableOpacity>
+       <TouchableOpacity
+         style={styles.button}
+         //onPress={}
+       >
+         <Text style={styles.title}> Phone Number </Text>
+       </TouchableOpacity>
 
        </View>
      );
@@ -64,10 +96,11 @@ class profileTeacher extends Component {
     height:50,
      width: 285,
      borderRadius:30,
-     borderColor: "#4CAF50",
+     borderColor: "#34ace0",
      borderWidth:1,
-     marginBottom:20
-     
+     marginBottom:20,
+    shadowColor:"#aaa69d",
+    shadowRadius:10,
    },
    title:{
  color: '#03a9f4',
@@ -85,9 +118,10 @@ class profileTeacher extends Component {
     },
     name:{
  marginRight:135,
+ marginLeft:140,
       fontWeight:"bold",
       color:"red",
-      fontSize:16,
+      fontSize:25,
     marginBottom:50
     },
     profile:{

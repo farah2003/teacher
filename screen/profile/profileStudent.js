@@ -31,7 +31,7 @@ class profileStudent extends Component {
     return (
       <View>
        
-       <Text style={styles.profile}> Touch Here </Text>
+       <Text style={styles.profile}> Your Profile </Text>
 
      
            <Image
@@ -47,19 +47,25 @@ class profileStudent extends Component {
          style={styles.button}
          //onPress={}
        >
-         <Text style={styles.title}> Touch Here </Text>
+         <Text style={styles.title}> My account settings  </Text>
        </TouchableOpacity>
        <TouchableOpacity
          style={styles.button}
          //onPress={}
        >
-         <Text style={styles.title}> Touch Here </Text>
+         <Text style={styles.title}> Edit Profile </Text>
        </TouchableOpacity>
        <TouchableOpacity
          style={styles.button}
          //onPress={}
        >
-         <Text style={styles.title}> Touch Here </Text>
+         <Text style={styles.title}> About the app </Text>
+       </TouchableOpacity>
+       <TouchableOpacity
+         style={styles.button}
+         //onPress={}
+       >
+         <Text style={styles.title}> Phone Number </Text>
        </TouchableOpacity>
       </View>
     );
@@ -81,9 +87,9 @@ marginLeft:30,
     backgroundColor:"white",
    height:50,
     width: 285,
-    borderRadius:30,
+    borderRadius:50,
     borderColor: "#4CAF50",
-    borderWidth:1,
+    borderWidth:2,
     marginBottom:20
     
   },
@@ -92,7 +98,7 @@ color: '#03a9f4',
   },
 image:{
   marginTop:25,
-    marginLeft:135,
+    marginLeft:140,
        height: 100,
    width: 100,
      
@@ -103,17 +109,20 @@ image:{
    },
    name:{
 marginRight:135,
+marginLeft:135,
      fontWeight:"bold",
      color:"red",
-     fontSize:16,
-   marginBottom:50
+     fontSize:30,
+   marginBottom:50,
    },
    profile:{
     marginRight:140,
+    marginLeft:100,
     marginTop:50,
-    color: '#03a9f4',
-    fontSize:16,
-    fontWeight:"500"
+    color: '#2c3e50',
+    fontSize:30,
+    fontWeight:"bold"
+    
    }
 })
 export default profileStudent;
