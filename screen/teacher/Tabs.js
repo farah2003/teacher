@@ -41,11 +41,9 @@ componentDidMount(){
     })
     }
 
-   Masanger=()=>{
- const{appname}=this.state
-      this.props.navigation.navigate("masanger"), { appname: "gh" }
-      
-    }
+   Masanger=(name)=>{
+ console.log("nameChat",name)
+      this.props.navigation.navigate("masanger", { appname:name })}
     render(){
       const{list}=this.state
         return(
@@ -74,7 +72,7 @@ componentDidMount(){
              <CardContent text={item.prise} />
           
            <TouchableOpacity
-                 onPress={()=>this.Masanger()} >
+                 onPress={()=>this.Masanger(item.Name)} >
            <Image
                style={styles.imageMasage}
                source={require("../masage.jpg")}
@@ -249,7 +247,7 @@ button2:{
     },
 
     imageMasage:{
-      marginLeft:300,
+      marginLeft:365,
          height: 35,
      width: 35,
          marginTop:0,

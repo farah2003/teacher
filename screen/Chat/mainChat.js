@@ -3,76 +3,126 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import { View, Text } from 'react-native';
 import * as firebase from 'firebase'
 class MainChat extends Component {
-state = {
-    messages:[]
-    }
-  componentWillMount(){
-
-    firebase.firestore().collection("Chat").doc("yruti6gfjbjtfopiopioyrr9g").get().then((doc)=>{                   
-        let newList =[] 
-       let data= doc.data().messages
-       /*data.map(item=>{
-        newList.push(item)
- 
-       })*/
-
-       this.setState({
-        messages:data
-          
-        })
-    console.log("sdftgyhuiuhygtfdr",this.state.messages)
+  static navigationOptions = ({navigation})=>{
+    return{
+      title:navigation.getParam('appname',null)
+    }}
    
-      /* this.setState({
-       List:newList
-     })
-  */
- /*list.map((item)=>{
-          
-          }
-          )*/
-          
+    state = {
+      messages:[],
+      receiverId:"",
+      senderId:""
+      }
+    componentWillMount(){
+      let name =this.props.navigation.getParam('appname')
+      const db = firebase.firestore();
+      db.collection("name").where('name','==',"sarah").get().then((userSnapshot) => {
+              
+    userSnapshot.docs.map(doc =>{
   
-  });
+    let uid= doc.data().userId
+  
+   this.setState({
+    receiverId:uid,
+  
+      
+    })
+  
+      })
+     }).then(()=>{
    
-  }
-    onSend=(m)=>{
-        const db = firebase.firestore();
-        this.setState((previousState) => ({
-            messages: GiftedChat.append(previousState.messages, m),
+      //const receiverId =this.state.receiverId
+      //console.log("Useridddddddddddddddd",receiverId)
+       //var user = firebase.auth().currentUser;
+       //const senderId = user.uid
+       const senderId ="bbbbbbbbbbbbbbbb"
+       const receiverId ="ffffffffffffffffffff"
+       this.setState({
+        senderId:senderId
+       })
+    
+       const id = senderId + "_" + receiverId;
+       console.log(id)
+  
+       firebase.firestore().collection("Chat").doc("tytgfnfgkmrtgfmfgdt").get().then((doc)=>{                   
+           let newList =[] 
+          let data= doc.data().messages
+          /*data.map(item=>{
+           newList.push(item)
+    
+          })*/
+   
+          this.setState({
+           messages:data
+             
+           })
+     })
+  
+});
+}
+onSend=async (m)=>{
+  const db = firebase.firestore()
+ let masaage={}
+m.map(item=>{
+masaage._id=item._id
+masaage.text=item.text;
+masaage.createdAt= firebase.database.ServerValue.TIMESTAMP,
+  
+masaage.user={
+  _id :item.user._id
+}
 
-        }))
-        
-        //////////////////////////try here to do  then to add the last message
-        db.collection("Chat").doc("yruti6gfjbjtfopiopioyrr9g").set({
-                messages:this.state.messages
+
+})
+await this.setState((previousState) => ({
+  messages: GiftedChat.append(previousState.messages, masaage),
+
+}))
+db.collection("Chat").doc("tytgfnfgkmrtgfmfgdt").set({
        
-          })/*.then(()=>{
-            
-          //.then(function (docRef) {
-                  //console.log("Document written with ID: ", docRef.id);
-        // })
-              //.catch(function (error) {
-                 // console.error("Error adding document: ", error);
-             // })
+  messages:this.state.messages
 
-        })*/
+})
+      /*console.log(masaage)
 
-         
-    }
+      const db = firebase.firestore().collection("Chat").doc("tytgfnfgkmrtgfmfgdt")
+      return db.update({
+       name:FieldValue.arrayUnion("aya")
+    });/*/
 
-  render() {
-    return (
-        <GiftedChat
-        onSend={(m) => this.onSend(m)}
-          messages={this.state.messages}
-          user={{
-            _id: 0,
-          }}
+     /* db.collection("Chat").doc("tytgfnfgkmrtgfmfgdt").set({
+       
+    
+      messages:masaage
+  
+   
+   })/* /.then(()=>{
           
-        />
+        //.then(function (docRef) {
+                //console.log("Document written with ID: ", docRef.id);
+      // })
+            //.catch(function (error) {
+               // console.error("Error adding document: ", error);
+           // })
 
-    );
-  }
+  })*/
+
+     
+}
+ 
+
+render() {
+  return (
+      <GiftedChat
+      onSend={(m) => this.onSend(m)}
+      messages={this.state.messages}
+      user={{
+        _id: 1,
+      }}
+     
+      />
+  );
+}
 }
 
 export default MainChat;

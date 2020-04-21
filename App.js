@@ -6,7 +6,7 @@ import {createStackNavigator}from 'react-navigation-stack'
 import MainChat from './screen/Chat/mainChat'
 import  AnotherChat from './screen/Chat/anotherChat'
 import NorthGazaTabs from './screen/teacher/NorthGaza'
-import Chat  from './screen/Chat/chat'
+import Chat  from './screen/Chat/Chat'
 import sub from "./screen/teacher/sub"; 
 import grade from "./screen/teacher/grade";   
 import Tabs from "./screen/teacher/Tabs";
@@ -130,7 +130,7 @@ subject:{screen:FindTeacherNav,
 const HometabStudent = createBottomTabNavigator({
     StudentHome:StudentDetails ,
     Studentprofile:profileStudent,
-    Studentmassnger:Fill
+    Chat:Chat
 });
 
 const MainStudent = createStackNavigator({
@@ -178,7 +178,6 @@ const SwitchScreen = createSwitchNavigator({
        /// } ) 
 
 
-const App = createAppContainer( SwitchScreen);
+const App = createAppContainer(HometabStudent);
 export default App;
-
 
