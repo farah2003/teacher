@@ -9,7 +9,7 @@ export default class Chat extends Component {
         receiverId:"",
         senderId:""
         }
-      componentWillMount(){
+      componentDidMount(){
         let name =this.props.navigation.getParam('appname')
         const db = firebase.firestore();
         db.collection("name").where('name','==',"sarah").get().then((userSnapshot) => {
@@ -27,12 +27,11 @@ export default class Chat extends Component {
         })
        }).then(()=>{
      
-        //const receiverId =this.state.receiverId
+        const receiverId =this.state.receiverId
         //console.log("Useridddddddddddddddd",receiverId)
-         //var user = firebase.auth().currentUser;
-         //const senderId = user.uid
-         const senderId ="bbbbbbbbbbbbbbbb"
-         const receiverId ="ffffffffffffffffffff"
+         var user = firebase.auth().currentUser;
+        const senderId = user.uid
+      
          this.setState({
           senderId:senderId
          })
@@ -65,7 +64,7 @@ onSend=async (m)=>{
   masaage.createdAt= firebase.database.ServerValue.TIMESTAMP,
     
   masaage.user={
-    _id :item.user._id
+    _id :this.state.receiverId
   }
 
   

@@ -4,9 +4,9 @@ import {createMaterialTopTabNavigator,createBottomTabNavigator}from 'react-navig
 import {createStackNavigator}from 'react-navigation-stack'
 //import Fill  from './screen/Home'
 import MainChat from './screen/Chat/mainChat'
-import  AnotherChat from './screen/Chat/anotherChat'
+
 import NorthGazaTabs from './screen/teacher/NorthGaza'
-import Chat  from './screen/Chat/Chat'
+import Chat  from './screen/Chat/FChat'
 import sub from "./screen/teacher/sub"; 
 import grade from "./screen/teacher/grade";   
 import Tabs from "./screen/teacher/Tabs";
@@ -178,6 +178,6 @@ const SwitchScreen = createSwitchNavigator({
        /// } ) 
 
 
-const App = createAppContainer(HometabStudent);
+const App = createAppContainer(SwitchScreen);
 export default App;
 

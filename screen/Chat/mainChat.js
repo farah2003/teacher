@@ -31,12 +31,10 @@ class MainChat extends Component {
       })
      }).then(()=>{
    
-      //const receiverId =this.state.receiverId
-      //console.log("Useridddddddddddddddd",receiverId)
-       //var user = firebase.auth().currentUser;
-       //const senderId = user.uid
-       const senderId ="bbbbbbbbbbbbbbbb"
-       const receiverId ="ffffffffffffffffffff"
+      const receiverId =this.state.receiverId
+      console.log("Useridddddddddddddddd",receiverId)
+       var user = firebase.auth().currentUser;
+      const senderId = user.uid
        this.setState({
         senderId:senderId
        })
