@@ -12,7 +12,7 @@ export default class Chat extends Component {
       componentDidMount(){
         let name =this.props.navigation.getParam('appname')
         const db = firebase.firestore();
-        db.collection("name").where('name','==',"sarah").get().then((userSnapshot) => {
+        db.collection("name").where('name','==',"Khalil").get().then((userSnapshot) => {
                 
       userSnapshot.docs.map(doc =>{
     
@@ -39,7 +39,7 @@ export default class Chat extends Component {
          const id = senderId + "_" + receiverId;
          console.log(id)
     
-         firebase.firestore().collection("Chat").doc("tytgfnfgkmrtgfmfgdt").get().then((doc)=>{                   
+         firebase.firestore().collection("Chat").doc(id).get().then((doc)=>{                   
              let newList =[] 
             let data= doc.data().messages
             /*data.map(item=>{
@@ -56,6 +56,13 @@ export default class Chat extends Component {
   });
 }
 onSend=async (m)=>{
+  const receiverId =this.state.receiverId
+  //console.log("Useridddddddddddddddd",receiverId)
+   var user = firebase.auth().currentUser;
+  const senderId = user.uid 
+  const id = senderId + "_" + receiverId;
+  console.log(id)
+
     const db = firebase.firestore()
    let masaage={}
  m.map(item=>{
@@ -73,7 +80,7 @@ onSend=async (m)=>{
     messages: GiftedChat.append(previousState.messages, masaage),
 
 }))
-db.collection("Chat").doc("tytgfnfgkmrtgfmfgdt").set({
+db.collection("Chat").doc(id).set({
          
     messages:this.state.messages
  

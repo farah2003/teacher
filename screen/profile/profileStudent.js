@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { View, Text,TouchableOpacity,StyleSheet,Image } from 'react-native';
 import * as firebase from 'firebase'
 class profileStudent extends Component {
+  static navigationOptions = {  
+    title: 'profile',  
+    
+    headerTintColor: '#03a9f4',  
+    headerTitleStyle: {  
+       fontWeight: 'bold',  
+    },  
+};  
  state = {
    name:""
     }
@@ -29,9 +37,10 @@ class profileStudent extends Component {
     }
   render() {
     return (
+      
       <View>
+        
        
-       <Text style={styles.profile}> Your Profile </Text>
 
      
            <Image
@@ -49,12 +58,7 @@ class profileStudent extends Component {
        >
          <Text style={styles.title}> My account settings  </Text>
        </TouchableOpacity>
-       <TouchableOpacity
-         style={styles.button}
-         //onPress={}
-       >
-         <Text style={styles.title}> Edit Profile </Text>
-       </TouchableOpacity>
+       
        <TouchableOpacity
          style={styles.button}
          //onPress={}
@@ -65,7 +69,7 @@ class profileStudent extends Component {
          style={styles.button}
          //onPress={}
        >
-         <Text style={styles.title}> Phone Number </Text>
+         <Text style={styles.title}> connect us </Text>
        </TouchableOpacity>
       </View>
     );
@@ -81,14 +85,15 @@ const styles = StyleSheet.create({
   backgroundColor: "white"
 },
 button:{
-marginLeft:30,
+  marginLeft:'auto' ,
+  marginRight: 'auto',
     justifyContent:'center',
     alignItems: 'center',
     backgroundColor:"white",
    height:50,
     width: 285,
     borderRadius:50,
-    borderColor: "#4CAF50",
+    borderColor: "#03a9f4",
     borderWidth:2,
     marginBottom:20
     
@@ -97,8 +102,8 @@ marginLeft:30,
 color: '#03a9f4',
   },
 image:{
-  marginTop:25,
-    marginLeft:140,
+  marginLeft:'auto' ,
+  marginRight: 'auto',
        height: 100,
    width: 100,
      
@@ -108,21 +113,14 @@ image:{
        borderRadius:50
    },
    name:{
-marginRight:135,
-marginLeft:135,
-     fontWeight:"bold",
-     color:"red",
-     fontSize:30,
+    marginLeft:'auto' ,
+    marginRight: 'auto',
+
+   
+  
+     fontSize:20,
    marginBottom:50,
    },
-   profile:{
-    marginRight:140,
-    marginLeft:100,
-    marginTop:50,
-    color: '#2c3e50',
-    fontSize:30,
-    fontWeight:"bold"
-    
-   }
+
 })
 export default profileStudent;

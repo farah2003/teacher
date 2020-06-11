@@ -13,15 +13,26 @@ class MainChat extends Component {
       receiverId:"",
       senderId:""
       }
-    componentWillMount(){
-      let name =this.props.navigation.getParam('appname')
-      const db = firebase.firestore();
-      db.collection("name").where('name','==',"sarah").get().then((userSnapshot) => {
-              
+      async componentWillMount(){  
+        let name = await   this.props.navigation.getParam('appname')
+
+       
+        this.makeRemoteRequest(name);
+      }
+      makeRemoteRequest=async (name)=>{
+    
+    
+      const Name=name
+      console.log('ffffffffffffff',Name)
+      const db = await firebase.firestore().collection("name").where('name','==','Khalil')
+    
+     await db.get().then((userSnapshot) => {
+      
     userSnapshot.docs.map(doc =>{
+      console.log(doc.data())
   
     let uid= doc.data().userId
-  
+    console.log(uid)
    this.setState({
     receiverId:uid,
   
@@ -40,9 +51,9 @@ class MainChat extends Component {
        })
     
        const id = senderId + "_" + receiverId;
-       console.log(id)
+       console.log("dfghjk",id)
   
-       firebase.firestore().collection("Chat").doc("tytgfnfgkmrtgfmfgdt").get().then((doc)=>{                   
+       firebase.firestore().collection("Chat").doc(id).get().then((doc)=>{                   
            let newList =[] 
           let data= doc.data().messages
           /*data.map(item=>{
@@ -59,6 +70,13 @@ class MainChat extends Component {
 });
 }
 onSend=async (m)=>{
+
+  const receiverId =this.state.receiverId
+  console.log("Useridddddddddddddddd",receiverId)
+   var user = firebase.auth().currentUser;
+  const senderId = user.uid
+  const id = senderId + "_" + receiverId;
+console.log('iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii',id)
   const db = firebase.firestore()
  let masaage={}
 m.map(item=>{
@@ -76,7 +94,8 @@ await this.setState((previousState) => ({
   messages: GiftedChat.append(previousState.messages, masaage),
 
 }))
-db.collection("Chat").doc("tytgfnfgkmrtgfmfgdt").set({
+
+db.collection("Chat").doc(id).set({
        
   messages:this.state.messages
 

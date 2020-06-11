@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {View ,StyleSheet,TextInput,Button,CheckBox,ScrollView,TouchableOpacity,Picker} from 'react-native';
+import {View ,StyleSheet,TextInput,Button,CheckBox,ScrollView,TouchableOpacity,Picker,Image} from 'react-native';
 import { Text } from 'native-base';
+import { auth } from 'firebase';
 export default class Main extends Component {
  teacher=()=>{
     this.props.navigation.navigate("Teacher");
@@ -14,8 +15,9 @@ export default class Main extends Component {
    
       return (
         <ScrollView >
-    
-         
+    <Image 
+    style={styles.image}
+      source={require("./image1.jpg")}></Image>
          <TouchableOpacity
            style={styles.button}
            
@@ -47,7 +49,8 @@ const styles = StyleSheet.create({
 
 button1: {
   marginTop:25,  
-marginLeft:30,
+  marginLeft:'auto' ,
+  marginRight: 'auto',
   justifyContent:'center',
   alignItems: 'center',
   backgroundColor: '#03a9f4',
@@ -59,8 +62,9 @@ marginLeft:30,
   
 },
 button: {
-  marginTop:350,  
-marginLeft:30,
+  marginTop:80,  
+  marginLeft:'auto' ,
+  marginRight: 'auto',
   justifyContent:'center',
   alignItems: 'center',
   backgroundColor: '#03a9f4',
@@ -80,5 +84,18 @@ marginRight:15,
 color:"#03a9f4",
 marginBottom:20
 },
+image:{
+  marginLeft:'auto' ,
+  marginRight: 'auto',
+  marginTop:120,
+    
+       height: 200,
+   width: 200,
+     
+       marginBottom:5,
+
+       
+       borderRadius:50
+   }
 
 })

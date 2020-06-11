@@ -6,9 +6,7 @@ import 'firebase/firestore';
 
 ;
 export default class NorthGazaTabs extends Component {
-  navigationOptions= {
-   title:"find"
-  }
+
 state={
   list:[],
   appname:""
@@ -20,7 +18,7 @@ state={
       let newList =[]
       let appname="farah"
   
-      db.collection("teacher").where('value','==','Biology').where('grade','==','11').get().then((userSnapshot) => {
+      db.collection("teacher").where('value','==','Biology').where('valueGrade','==','tenth').where('valueArea','==','GAZA').get().then((userSnapshot) => {
    
           
         userSnapshot.docs.map(doc =>{
@@ -40,11 +38,12 @@ state={
       
     })
     }
-   Masanger=()=>{
+   Masanger=(name)=>{
+  
  
       this.props.navigation.navigate("masanger"
      ,  {
-        appname: this.state.appname
+        appname: name
       })
       
     }
@@ -69,17 +68,18 @@ state={
        
            
 
-             <CardTitle   subtitle={item.appname}/>
-             <CardContent text={item.Name} />
-             <CardContent text={item.grade} />
+         <CardContent text={ item.Name} />
+             <CardContent text={item.valueGrade} />
              <CardContent text={item.value}/>
-             <CardContent text={item.prise} />
+             <CardContent text={item.address}/>
+             <CardContent text={item.Phone} />
+             <CardContent text={item.price} />
           
            <TouchableOpacity
-                 onPress={()=>this.Masanger()} >
+              onPress={()=>this.Masanger(item.Name)} >
            <Image
                style={styles.imageMasage}
-               source={require("../image.jpg")}
+               source={require("../masage.jpg")}
             > 
        
              </Image>  
@@ -239,21 +239,21 @@ button2:{
     color:'black',   
     borderRadius:30
     },
-    image:{
-     marginLeft:240,
+image:{
+   
         height: 100,
 		width: 100,
         marginTop: 5,
         marginBottom:3,
 
-        margin: 30,
+       
         borderRadius:50
     },
 
     imageMasage:{
-      marginLeft:240,
-         height: 50,
-     width: 50,
+      
+         height: 40,
+     width: 40,
          marginTop: 5,
          marginBottom:3,
  

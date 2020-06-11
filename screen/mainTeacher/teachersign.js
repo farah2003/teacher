@@ -3,9 +3,14 @@ import {View ,StyleSheet,TextInput,Button,CheckBox,ScrollView,TouchableOpacity,P
 import { Text } from 'native-base';
 import * as firebase from 'firebase'
 export default class TeacherSign extends Component {
-  static navigationOptions = {
-    header : null   
- };
+  static navigationOptions = {  
+    title: ' Teacher sign in',  
+    
+    headerTintColor: '#03a9f4',  
+    headerTitleStyle: {  
+       fontWeight: 'bold',  
+    },  
+}; 
   state={
     name:"",
     email:"",
@@ -118,30 +123,33 @@ backgroundColor: "white"
 textInput1: {
 marginTop:120,
 margin: 15,
-padding: 10,
+marginLeft:'auto' ,
+marginRight: 'auto',
 fontSize: 18,
 textAlign: "center",
 width: 320,
 borderColor: "gray",
 borderRadius:30,
 borderWidth: 1,
-marginLeft:20,
+
 height:50,
 },
 textInput: {
 margin: 15,
-padding: 10,
+
 fontSize: 18,
 textAlign: "center",
 width: 320,
 borderColor: "gray",
 borderRadius:30,
 borderWidth: 1,
-marginLeft:20,
+marginLeft:'auto' ,
+marginRight: 'auto',
 height:50,
 },
 button: {
-marginLeft:30,
+marginLeft:'auto' ,
+marginRight: 'auto',
 justifyContent:'center',
 alignItems: 'center',
 backgroundColor: '#03a9f4',
@@ -154,7 +162,8 @@ marginBottom:20
 },
 button1: {
 marginTop:0,
-marginLeft:30,
+marginLeft:'auto' ,
+marginRight: 'auto',
   justifyContent:'center',
   alignItems: 'center',
  

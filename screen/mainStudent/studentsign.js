@@ -4,6 +4,14 @@ import { Text } from 'native-base';
 import * as firebase from 'firebase'
 
 export default class StudentSign extends Component {
+  static navigationOptions = {  
+    title: '  Student sign in',  
+    
+    headerTintColor: '#03a9f4',  
+    headerTitleStyle: {  
+       fontWeight: 'bold',  
+    },  
+}; 
   state={
     name:"",
     email:"",
@@ -111,30 +119,33 @@ const styles = StyleSheet.create({
 textInput1: {
   marginTop:120,
   margin: 15,
-  padding: 10,
+ marginLeft:'auto' ,
+ marginRight: 'auto',
   fontSize: 18,
   textAlign: "center",
   width: 320,
   borderColor: "gray",
   borderRadius:30,
   borderWidth: 1,
-  marginLeft:20,
+ 
   height:50,
 },
 textInput: {
   margin: 15,
-  padding: 10,
+  marginLeft:'auto' ,
+ marginRight: 'auto',
   fontSize: 18,
   textAlign: "center",
   width: 320,
   borderColor: "gray",
   borderRadius:30,
   borderWidth: 1,
-  marginLeft:20,
+  marginBottom:20,
   height:50,
 },
 button: {
-marginLeft:30,
+ marginLeft:'auto' ,
+ marginRight: 'auto',
   justifyContent:'center',
   alignItems: 'center',
   backgroundColor: '#03a9f4',
@@ -146,16 +157,15 @@ marginLeft:30,
   
 },
 button1: {
-  marginTop:0,
-  marginLeft:30,
+  marginTop:10,
+
     justifyContent:'center',
     alignItems: 'center',
-   
+    marginLeft:'auto' ,
+ marginRight: 'auto',
    height:20,
     width: 285,
-    borderRadius:30,
-    borderColor: "#4CAF50",
-    marginBottom:20
+
     
   },
 title:{

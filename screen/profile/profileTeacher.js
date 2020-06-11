@@ -3,6 +3,14 @@ import { View, Text,TouchableOpacity,StyleSheet,Image, ImageBackground } from 'r
 import {Icon} from 'react-native-elements';
 import * as firebase from 'firebase'
 class profileTeacher extends Component {
+  static navigationOptions = {  
+    title: 'profile',  
+    
+    headerTintColor: '#03a9f4',  
+    headerTitleStyle: {  
+       fontWeight: 'bold',  
+    },  
+};  
   state = {
     name:""
      }
@@ -12,9 +20,8 @@ class profileTeacher extends Component {
        const db = firebase.firestore();
   
        var user = firebase.auth().currentUser;
-       let newList =[]
-       let appname="ffff"
    
+       
        db.collection("name").doc(user.uid).get().then((userdoc) =>{
     
            
@@ -30,9 +37,10 @@ class profileTeacher extends Component {
      }
    render() {
      return (
-       <View>
+       <View style={styles.container}>
         
-        <Text style={styles.profile}> Your Profile </Text>
+    
+   
  
       
             <Image
@@ -41,38 +49,30 @@ class profileTeacher extends Component {
              > 
         
               </Image>  
+
+        <Text style={styles.title1}> Name </Text>
+              <Text style={styles.info}> {this.state.name} </Text>
+
+
+        <Text style={styles.title1}> email </Text>
+
+        <Text style={styles.info}>{this.state.name}@gmsil.com </Text>
+        <Text style={styles.title1}> phone </Text>
+
+<Text style={styles.info}>05999999 </Text>
+<Text style={styles.title1}> school</Text>
+
+<Text style={styles.info}>Al Karmel High school  </Text>
+ 
              
-              <Text style={styles.name}> {this.state.name} </Text>
-              <TouchableOpacity
-         style={styles.button}
-         //onPress={}
-       >
- {/* <ImageBackground source={{uid:'https://image.flaticon.com/icons/png/512/124/124642.png'}} style={{width: '100%', height: '100%'}}></ImageBackground>        */}
-<Text style={styles.title}> Al Karmel High school  </Text>
-       </TouchableOpacity>
+            
+
+
        <TouchableOpacity
          style={styles.button}
          //onPress={}
        >
-         <Icon
-  reverse
-  name='ios-american-football'
-  type='ionicon'
-  color='#517fa4'
-/>
-         <Text style={styles.title}> Edit Profile </Text>
-       </TouchableOpacity>
-       <TouchableOpacity
-         style={styles.button}
-         //onPress={}
-       >
-         <Text style={styles.title}> About the app </Text>
-       </TouchableOpacity>
-       <TouchableOpacity
-         style={styles.button}
-         //onPress={}
-       >
-         <Text style={styles.title}> Phone Number </Text>
+         <Text style={styles.title}> Edit profile </Text>
        </TouchableOpacity>
 
        </View>
@@ -82,55 +82,74 @@ class profileTeacher extends Component {
  const styles = StyleSheet.create({
  
    container: {
-   flex: 1,
+  
    
-      
+      backgroundColor:'white'
  
-   backgroundColor: "white"
+
  },
  button:{
- marginLeft:30,
+  marginLeft:'auto' ,
+  marginRight: 'auto',
+  marginTop:20,
+  marginBottom:40,
      justifyContent:'center',
      alignItems: 'center',
-     backgroundColor:"white",
+     backgroundColor:"#03a9f4",
     height:50,
      width: 285,
      borderRadius:30,
-     borderColor: "#34ace0",
+     borderColor: "white",
      borderWidth:1,
      marginBottom:20,
     shadowColor:"#aaa69d",
     shadowRadius:10,
    },
    title:{
- color: '#03a9f4',
+
+ color: 'white',
+
+ fontSize:24
+ 
    },
+   title1:{
+    
+     
+    color: '#03a9f4',
+    fontWeight:"bold",
+    marginLeft:'5%',
+    fontSize:16,
+    
+      },
  image:{
-   marginTop:25,
-     marginLeft:135,
+
+
+  marginLeft:'60%',
+marginTop:20,
+ 
         height: 100,
     width: 100,
-      
-        marginBottom:5,
+    marginBottom:20,
+      borderWidth:3,
+      borderColor:'#e6f2ff',
+       
  
-        margin: 30,
-        borderRadius:50
+        borderRadius:50,
+     
     },
-    name:{
- marginRight:135,
- marginLeft:140,
-      fontWeight:"bold",
-      color:"red",
-      fontSize:25,
-    marginBottom:50
+
+    info:{
+      marginLeft:'5%',
+    marginTop:5,
+      textAlign: 'left',
+    
+     
+      fontSize:18,
+      marginBottom: 20,
+ 
+    
     },
-    profile:{
-     marginRight:140,
-     marginTop:50,
-     color: '#03a9f4',
-     fontSize:16,
-     fontWeight:"500"
-    }
+  
  })
 
  export default profileTeacher;

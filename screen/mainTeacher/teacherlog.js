@@ -4,6 +4,14 @@ import { Text } from 'native-base';
 import * as firebase from 'firebase'
 export default class TeacherLog extends Component {
 
+  static navigationOptions = {  
+    title: ' Teacher log in',  
+    
+    headerTintColor: '#03a9f4',  
+    headerTitleStyle: {  
+       fontWeight: 'bold',  
+    },  
+}; 
     state={
       email:"",
       password:""
@@ -80,15 +88,16 @@ const styles = StyleSheet.create({
 },
 textInput1: {
   marginTop:220,
-  margin: 24,
-  padding: 10,
+
+  marginLeft:'auto' ,
+  marginRight: 'auto',
   fontSize: 18,
   textAlign: "center",
   width: 320,
   borderColor: "gray",
   borderRadius:30,
   borderWidth: 1,
-  marginLeft:20,
+
   height:50,
 },
 textInput: {
@@ -100,11 +109,14 @@ textInput: {
   borderColor: "gray",
   borderRadius:30,
   borderWidth: 1,
-  marginLeft:20,
+  marginLeft:'auto' ,
+  marginRight: 'auto',
   height:50,
 },
 button: {
-marginLeft:30,
+  marginLeft:'auto' ,
+  marginRight: 'auto',
+
   justifyContent:'center',
   alignItems: 'center',
   backgroundColor: '#03a9f4',

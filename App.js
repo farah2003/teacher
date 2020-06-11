@@ -39,7 +39,7 @@ const Masangerpage = createStackNavigator({
             //labelStyle: { fontSize: 12 },
              tabStyle: { width: 100 },
              header: null,
-          //   style: { backgroundColor: 'powderblue' },
+       
            },},
     masanger: {screen:MainChat }
      //   navigationOptions:{
@@ -52,14 +52,31 @@ const Masangerpage = createStackNavigator({
     
 
 });
+const Masanger = createStackNavigator({
+    NorthTabs: {screen:NorthGazaTabs, 
+        navigationOptions: {
+          
+            style:{marginTop: 10},
+           
+          
+            header: null
+            ,
+        
+          },},
+   
+    masanger:MainChat ,
+   
+});
 
-Masangerpage.navigationOptions = ({ navigation }) => {
+Masanger.navigationOptions = ({ navigation }) => {
     let tabBarVisible;
+   
    if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
      
         if (route.routeName === "masanger") {
           tabBarVisible = false;
+         
         } else {
           tabBarVisible = true;
         }
@@ -70,41 +87,84 @@ Masangerpage.navigationOptions = ({ navigation }) => {
       tabBarVisible
     };
   };
-/*Masangerpage.navigationOptions = ({ navigation }) => {
-    navigationOptions = {
-    title: navigation.getParam('Title', ' Gaza'),
-    };
-    if (navigation.state.routeName === "masanger") {
-        console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyy")
-    navigationOptions.tabBarVisible = false;
+Masangerpage.navigationOptions = ({ navigation }) => {
+    let tabBarVisible;
+   
+   if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+     
+        if (route.routeName === "masanger") {
+          tabBarVisible = false;
+         
+        } else {
+          tabBarVisible = true;
+        }
+     });
     }
-    return navigationOptions;
-    };*/
-const Masanger = createStackNavigator({
   
-   
-    NorthTabs:NorthGazaTabs,
-    
-    masanger:MainChat ,
-   
-});
+    return {
+      tabBarVisible
+    };
+  };
+
+
 const AppNavigatorTop= createMaterialTopTabNavigator(  
     {  
-        GAZA:{screen: Masangerpage ,
+        GAZA:{screen: Masanger ,
             navigationOptions: {
-               // labelStyle:{backgroundColor:"green"},
+              
                 style:{marginTop: 10},
                
-               //tabStyle: { width: 100,marginTop: 10,backgroundColor:"black" },
+              
                 header: null
                 ,
-             //   style: { backgroundColor: 'powderblue' },
+            
               },},
        
-        NorthGaza:Masanger,  
-      Rafah:Tabs,   
-      NoGaza:Tabs,  
-      NorGaza:Tabs,  
+
+ NorthGaza:{screen: Masangerpage ,
+                navigationOptions: {
+                  
+                    style:{marginTop: 10},
+                   
+                  
+                    header: null
+                    ,
+                
+                  },},
+        
+  Rafah:{screen: Masangerpage ,
+                navigationOptions: {
+                  
+                    style:{marginTop: 10},
+                   
+                  
+                    header: null
+                    ,
+                
+                  },},
+     
+      janyons:{screen: Masangerpage ,
+        navigationOptions: {
+          
+            style:{marginTop: 10},
+           
+          
+            header: null
+            ,
+        
+          },},
+   
+          westGaza:{screen: Masangerpage ,
+            navigationOptions: {
+              
+                style:{marginTop: 10},
+               
+              
+                header: null
+                ,
+            
+              },},
   
   } ,
   
@@ -127,9 +187,18 @@ subject:{screen:FindTeacherNav,
         header: null,
       }, }
 });
+const profileStu = createStackNavigator({
+    Studentprofile:profileStudent,
+    subject:{screen:FindTeacherNav,
+        navigationOptions: {
+            header: null,
+          }, }
+    });
+    
+
 const HometabStudent = createBottomTabNavigator({
     StudentHome:StudentDetails ,
-    Studentprofile:profileStudent,
+    Studentprofile:profileStu,
     Chat:Chat
 });
 
@@ -148,10 +217,25 @@ const MainTeacher = createStackNavigator({
 	Teacherlogin:  TeacherLog,
 	
 });
+const profile = createStackNavigator({
+    profile :profileTeacher,
+    subject:{screen:FindTeacherNav,
+        navigationOptions: {
+            header: null,
+          }, }
+    });
+    const fillinfo = createStackNavigator({
+        Add :Fill ,
+        subject:{screen:FindTeacherNav,
+            navigationOptions: {
+                header: null,
+              }, }
+        });
 const HometabTeacher = createBottomTabNavigator({
-    TeacherHome:Fill,
-    Teacherprofile:profileTeacher,
-    Teachermassnger:Fill
+    TeacherHome:fillinfo,
+    Teacherprofile:  profile ,
+    chat:Chat,
+   
 });
 
 const SwitchTeacher = createSwitchNavigator({

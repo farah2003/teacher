@@ -6,9 +6,7 @@ import 'firebase/firestore';
 
 ;
 export default class Tabs extends Component {
-  navigationOptions= {
-   title:"find"
-  }
+
 state={
   list:[],
   appname:""
@@ -20,7 +18,7 @@ componentDidMount(){
       let newList =[]
       let appname="ffff"
   
-      db.collection("teacher").where('value','==','Biology').where('grade','==','11').get().then((userSnapshot) => {
+      db.collection("teacher").where('value','==','Biology').where('valueGrade','==','tenth').where('valueArea','==','NorthGaza').get().then((userSnapshot) => {
    
           
         userSnapshot.docs.map(doc =>{
@@ -65,11 +63,13 @@ componentDidMount(){
        
            
 
-             <CardTitle   subtitle={item.appname}/>
-             <CardContent text={item.Name} />
-             <CardContent text={item.grade} />
+        
+             <CardContent text={ item.Name} />
+             <CardContent text={item.valueGrade} />
              <CardContent text={item.value}/>
-             <CardContent text={item.prise} />
+             <CardContent text={item.address}/>
+             <CardContent text={item.Phone} />
+             <CardContent text={item.price} />
           
            <TouchableOpacity
                  onPress={()=>this.Masanger(item.Name)} >
@@ -81,20 +81,7 @@ componentDidMount(){
              </Image>  
              </TouchableOpacity>   
            
-             {/* <CardAction 
-                separator={true} 
-                inColumn={false}>
-                <CardButton
-                  onPress={() => {}}
-                  title="Share"
-                  color="#FEB557"
-                />
-                <CardButton
-                  onPress={() => {}}
-                  title="Explore"
-                  color="#FEB557"
-                />
-             </CardAction>*/}
+             
             </Card>
       
 
@@ -104,70 +91,6 @@ componentDidMount(){
               )
             })}  
            
-            {/*  <Card >
-                <TouchableOpacity>
-           <Image
-               style={styles.image}
-               source={require("../image.jpg")}
-            > 
-       
-             </Image>  
-             </TouchableOpacity>    
-             <CardTitle   subtitle="farah shaqoura"/>
-
-           
-             
-             <CardContent text="grade 10" />
-             <CardContent text="physics" />
-             <CardContent text="12$" />
-          
-             
-            <CardAction 
-                separator={true} 
-                inColumn={false}>
-                <CardButton
-                  onPress={() => {}}
-                  title="Share"
-                  color="#FEB557"
-                />
-                <CardButton
-                  onPress={() => {}}
-                  title="Explore"
-                  color="#FEB557"
-                />
-             </CardAction>
-            </Card>
-           {/* <Card >
-                <TouchableOpacity>
-           <Image
-               style={styles.image}
-               source={require("../image.jpg")}
-             ></Image>  
-             </TouchableOpacity>    
-             <CardTitle   subtitle="farah shaqoura"/>
-
-           
-             
-             <CardContent text="grade 10" />
-             <CardContent text="physics" />
-             <CardContent text="12$" />
-          
-             
-             {/* <CardAction 
-                separator={true} 
-                inColumn={false}>
-                <CardButton
-                  onPress={() => {}}
-                  title="Share"
-                  color="#FEB557"
-                />
-                <CardButton
-                  onPress={() => {}}
-                  title="Explore"
-                  color="#FEB557"
-                />
-             </CardAction>
-            </Card>*/}
           
           </ScrollView>
         )
@@ -236,7 +159,7 @@ button2:{
     borderRadius:30
     },
     image:{
-     marginLeft:240,
+   
         height: 100,
 		width: 100,
         marginTop: 5,
@@ -247,7 +170,7 @@ button2:{
     },
 
     imageMasage:{
-      marginLeft:365,
+ 
          height: 35,
      width: 35,
          marginTop:0,

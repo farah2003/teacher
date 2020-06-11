@@ -9,23 +9,25 @@ import * as firebase from "firebase";
 import 'firebase/firestore';
 import { Text } from 'native-base';
 export default class Fill extends Component {
-  static navigationOptions = {
-    title: 'subject',
-    headerStyle: { backgroundColor: 'red',height:'50pxs' },
-    headerTitleStyle: { color: 'white' },
-  } 
+  static navigationOptions = {  
+    title: 'Fill in',  
+    
+    headerTintColor: '#03a9f4',  
+    headerTitleStyle: {  
+       fontWeight: 'bold',  
+    },  
+};  
 state={
   appName:'',
 name:'',
-check:false,
+valueGrade:'',
 age:"",
 phone:'',
 price:'',
 grade:'',
 address:'',
-classMath:false,
-sub:"",
-value:""
+valueArea:"",
+valuesub:""
 }
 componentWillMount(){
   let user=firebase.auth().currentUser;
@@ -44,15 +46,7 @@ componentWillMount(){
 
 });
 }
-checkboxph=()=>{
-  
-    this.setState({
-        check:!this.state.check,
-        classMath:true,
-    
-    })
-   
-}
+
 
 select=(itemValue, itemIndex)=>{
 
@@ -68,19 +62,18 @@ addData=()=>{
 
     db.add({
         
-      appName:this.state.appName,
+   
     Name: this.state.name,
    
    age:this.state.age,
-    value:this.state.value
-  
-
-
-       //Phone:this.state.phone,
-       // Age:this.state.age,
-       // price:this.state.price,
-       // grade:this.state.grade,
-       // address:this.state.address
+   
+    valueArea:this.state.valueArea,
+    value:this.state.valuesub,
+    valueGrade:this.state.valueGrade,
+       Phone:this.state.phone,
+       Age:this.state.age,
+        price:this.state.price,
+        address:this.state.address
 
 
     }).then(function (docRef) {
@@ -100,8 +93,7 @@ addData=()=>{
   const {name}=this.state.name
     return (
       <ScrollView style={styles.container}>
-          <Text style={styles.text}>Add ur information</Text>
-
+          
        <TextInput
        	style={styles.textInput}
        placeholder="enter ur name"
@@ -124,9 +116,9 @@ addData=()=>{
 
 <TextInput
        	style={styles.textInput}
-       placeholder="enter ur age"
+       placeholder="enter ur phone"
        onChangeText={text=>{
-           this.setState({age:text})
+           this.setState({phone:text})
        }}
        />
 
@@ -134,9 +126,9 @@ addData=()=>{
 
 <TextInput
        	style={styles.textInput}
-       placeholder="enter ur age"
+       placeholder="enter ur price"
        onChangeText={text=>{
-           this.setState({age:text})
+           this.setState({price:text})
        }}
        />
 
@@ -144,93 +136,73 @@ addData=()=>{
 
 <TextInput
        	style={styles.textInput}
-       placeholder="enter ur age"
+       placeholder="enter ur address"
        onChangeText={text=>{
-           this.setState({age:text})
+           this.setState({address:text})
        }}
        />
 
+ <Text style={{paddingLeft:15,color:'#03a9f4',marginBottom:5}}>your subject</Text>
+<View style={styles.View}>
+ 
+<Picker
+style={styles.Picker}
+          selectedValue={this.state.valuesub}
+ 
+          onValueChange={(value) => {
+            this.select(value)
+             this.setState({valuesub: value});
+           
+          }}>
+          <Picker.Item  label='Math' value='Math'/>
+          <Picker.Item label="Physics" value="Physics" />
+          <Picker.Item label="Biology" value="Biology" />
+          <Picker.Item label="chemistry" value="chemistry" />
+          <Picker.Item label="Arabic" value="Arabic" />
+          <Picker.Item label="English" value="English" />
+        </Picker>
+        </View>
 
 
-<TextInput
-       	style={styles.textInput}
-       placeholder="enter ur age"
-       onChangeText={text=>{
-           this.setState({age:text})
-       }}
-       />
-
-
+        <Text style={{paddingLeft:15,color:'#03a9f4',marginBottom:5}}>your area</Text>
+<View style={styles.View}>
+ 
+<Picker
+style={styles.Picker}
+selectedValue={this.state.valueArea}
+ 
+      onValueChange={(valueA) => {
+        this.select(valueA)
+         this.setState({valueArea: valueA});
        
-
-
-
-
-
-{/*<CheckBox
- value={this.state.check}
-      onChange={()=>this.checkboxph()}/> */}
- <Text style={{paddingLeft:15,color:'#03a9f4',marginBottom:5}}>UR SUB</Text>
-<View style={styles.View}>
- 
-<Picker
-style={styles.Picker}
-          selectedValue={this.state.value}
- 
-        
-          onValueChange={(itemValue, itemIndex) => {
-            this.select(itemValue, itemIndex)
-          }
-          }>
-          <Picker.Item color="gray" label={'Math'} value={'Math'}/>
-          <Picker.Item label="Physics" value="Physics" />
-          <Picker.Item label="Biology" value="Biology" />
-          <Picker.Item label="chemistry" value="chemistry" />
-          <Picker.Item label="are" value="word5" />
-          <Picker.Item label="you" value="word6" />
+      }} >
+          <Picker.Item   label='GAZA' value='GAZA'/>
+          <Picker.Item label="NorthGaza" value="NorthGaza" />
+          <Picker.Item label="Rafah" value="Rafah" />
+          <Picker.Item label="westGaza" value="westGaza" />
+          <Picker.Item label="Khan Younes" value="Khan Younes" />
+       
         </Picker>
         </View>
 
-
-        <Text style={{paddingLeft:15,color:'#03a9f4',marginBottom:5}}>UR SUB</Text>
+        <Text style={{paddingLeft:15,color:'#03a9f4',marginBottom:5}}>your grade</Text>
 <View style={styles.View}>
  
 <Picker
 style={styles.Picker}
-          selectedValue={this.state.value}
+          selectedValue={this.state.valueGrade}
  
         
-          onValueChange={(itemValue, itemIndex) => {
-            this.select(itemValue, itemIndex)
-          }
-          }>
-          <Picker.Item color="gray" label={'Math'} value={'Math'}/>
-          <Picker.Item label="Physics" value="Physics" />
-          <Picker.Item label="Biology" value="Biology" />
-          <Picker.Item label="chemistry" value="chemistry" />
-          <Picker.Item label="are" value="word5" />
-          <Picker.Item label="you" value="word6" />
-        </Picker>
-        </View>
-
-        <Text style={{paddingLeft:15,color:'#03a9f4',marginBottom:5}}>UR SUB</Text>
-<View style={styles.View}>
- 
-<Picker
-style={styles.Picker}
-          selectedValue={this.state.value}
- 
-        
-          onValueChange={(itemValue, itemIndex) => {
-            this.select(itemValue, itemIndex)
-          }
-          }>
-          <Picker.Item color="gray" label={'Math'} value={'Math'}/>
-          <Picker.Item label="Physics" value="Physics" />
-          <Picker.Item label="Biology" value="Biology" />
-          <Picker.Item label="chemistry" value="chemistry" />
-          <Picker.Item label="are" value="word5" />
-          <Picker.Item label="you" value="word6" />
+          onValueChange={(valueG) => {
+            this.select(valueG)
+             this.setState({valueGrade: valueG});
+           
+          }}>
+         
+          <Picker.Item label="tenth" value="tenth" />
+          <Picker.Item label="eleventh" value="eleventh" />
+          <Picker.Item label="twelfth" value="twelfth" />
+       
         </Picker>
         </View>
       
@@ -263,11 +235,12 @@ textInput: {
     borderColor: "gray",
     borderRadius:30,
     borderWidth: 1,
-    marginLeft:20,
+    marginLeft:'auto' ,
+    marginRight: 'auto',
     height:50,
 },
 button: {
-marginLeft:30,
+
     justifyContent:'center',
     alignItems: 'center',
     backgroundColor: '#03a9f4',
@@ -275,7 +248,9 @@ marginLeft:30,
     width: 285,
     borderRadius:30,
     borderColor: "#4CAF50",
-    marginBottom:20
+    marginBottom:20,
+    marginLeft:'auto' ,
+    marginRight: 'auto',
     
   },
   title:{

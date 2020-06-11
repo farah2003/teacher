@@ -3,9 +3,14 @@ import {View ,StyleSheet,TextInput,Button,CheckBox,ScrollView,TouchableOpacity,P
 import { Text } from 'native-base';
 import * as firebase from 'firebase'
 export default class StudentLog extends Component {
-  static navigationOptions = {
-    header : null   
- };
+  static navigationOptions = {  
+    title: ' Student log in',  
+    
+    headerTintColor: '#03a9f4',  
+    headerTitleStyle: {  
+       fontWeight: 'bold',  
+    },  
+}; 
   state={
    email:"",
    password:""
@@ -87,7 +92,9 @@ width: 320,
 borderColor: "gray",
 borderRadius:30,
 borderWidth: 1,
-marginLeft:20,
+
+marginLeft:'auto' ,
+marginRight: 'auto',
 height:50,
 },
 textInput: {
@@ -99,7 +106,8 @@ width: 320,
 borderColor: "gray",
 borderRadius:30,
 borderWidth: 1,
-marginLeft:20,
+marginLeft:'auto' ,
+marginRight: 'auto',
 height:50,
 },
 button: {
@@ -111,7 +119,9 @@ height:50,
 width: 285,
 borderRadius:30,
 borderColor: "#4CAF50",
-marginBottom:20
+marginBottom:20,
+marginLeft:'auto' ,
+marginRight: 'auto',
 
 },
 title:{
